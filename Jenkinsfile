@@ -71,6 +71,7 @@ pipeline {
         stage("Deploy") {
             agent { label 'vm3' }
             steps {
+                sh "pwd"
                 sh "docker login ghcr.io -u ${GITHUB_CRED_USR} -p ${GITHUB_CRED_PSW}"
                 sh "docker pull ghcr.io/${NAMESPACE}/${IMAGE_NAME}"
 
