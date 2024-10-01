@@ -1,23 +1,24 @@
 pipeline {
-    agent { label 'build-agent' }
+    agent { label 'vm2' }
     environment {
         APP_NAME = "web-api"
         IMAGE_NAME = 'spdx'
 
-        ROBOT_REPO = 'https://github.com/CE-RELATIONSHIP/jenkins-automate-testing'
+        ROBOT_REPO = 'https://github.com/kitti-best/dont-look-its-test-repo-for-testing-another-repo'
         ROBOT_BRANCH = 'main'
-        ROBOT_FILE = 'unit_test.robot'
+        ROBOT_FILE = 'robot_test.robot'
 
-        MAIN_REPO = 'https://https://github.com/CE-RELATIONSHIP/jenkins-assignment/'
-        MAIN_BRANCH = 'jenkins-pipeline-peqch-only'
+        MAIN_REPO = 'https://github.com/kitti-best/jenkins-assignment'
+        MAIN_BRANCH = 'feature'
 
-        NAMESPACE = 'ce-relationship'
-        GITHUB_CRED = credentials('github-registry')
+        NAMESPACE = 'kitti-best'
+        GITHUB_CRED = credentials('user_01')
     }
 
     stages {
         stage("Build") {
             steps {
+                sh "pwd"
                 sh "docker build --tag ${IMAGE_NAME} ."
                 sh "docker image ls"
             }
@@ -68,7 +69,7 @@ pipeline {
         }
 
         stage("Deploy") {
-            agent { label 'deploy-server' }
+            agent { label 'vm3' }
             steps {
                 sh "docker login ghcr.io -u ${GITHUB_CRED_USR} -p ${GITHUB_CRED_PSW}"
                 sh "docker pull ghcr.io/${NAMESPACE}/${IMAGE_NAME}"
