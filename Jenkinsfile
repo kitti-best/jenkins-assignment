@@ -5,7 +5,7 @@ pipeline {
         IMAGE_NAME = 'spdx'
 
         ROBOT_REPO = 'https://github.com/kitti-best/dont-look-its-test-repo-for-testing-another-repo'
-        ROBOT_BRANCH = 'main'
+        ROBOT_BRANCH = 'master'
         ROBOT_FILE = 'robot_test.robot'
 
         MAIN_REPO = 'https://github.com/kitti-best/jenkins-assignment'
