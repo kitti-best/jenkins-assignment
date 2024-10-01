@@ -44,7 +44,7 @@ pipeline {
                 /////////////////////////////////////////
 
                 ////// unit test running batch  //////
-                git url: "${ROBOT_REPO} ./robot", branch: "${ROBOT_BRANCH}"
+                git url: "${ROBOT_REPO}", branch: "${ROBOT_BRANCH}"
                 sh "robot ${ROBOT_FILE}"
                 //////////////////////////////////////
             }
